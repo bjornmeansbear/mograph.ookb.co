@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+
+	<title>Basic</title>
+
+<!-- JS can go up here in the header … but if you are hand coding a site, it's really best to load it at the end, and then you can even just write in simply commands for that particular page directly on it -->
+
+  <link rel="stylesheet" type="text/css" href="js/sb/shadowbox.css">
+
+  <style type="text/css">
+    body { 
+      font: 16px Sans-Serif;
+      padding-top: 40px;
+      }
+      
+    .clear {clear:both;}
+    
+    #container {width:800px; margin:0 auto;}
+    
+    .half {width: 45%; margin: 0 2.5%; float:left;}
+
+    .demo dt, .demo dd {
+      padding: 10px;
+      border-bottom: 0;
+    }
+      
+    .demo dl a {
+      display: block;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .demo dd {
+      font-size: 12px;
+    }
+
+  </style>
+
+</head>
+<body>
+	<!-- Primary Page Layout
+	================================================== -->
+  <div id="container">
+
+    <header>
+      <h1>jQuery Demo</h1>
+      <p>Some simple demonstrations, as well as some links, for quick jQuery awesomeness</p>
+    </header>  
+
+    <div id="main">
+      
+      <section id="toggle">
+        <h2>Expand/Collapse Toggling</h2>
+        <p class="main">All the expand/collapse functions on the class website (<a href="http://mograph.ookb.co">mograph.ookb.co</a>) are provided by a few lines of JS added at the end of the document. This is because jQuery already has all the code written in its library, you just need to know how to call and target it, as well as what few conditions to set (like speed, etc.)</p>
+        
+        <article class="demo half">
+          <h3>Try the demo</h3>
+          <p>Hint, google "jQuery Accordian" for more tips, tricks, etc.</p>
+          <p>This can also be done with definition lists, (dl instead of ul or ol) as they already have title areas and then attached content areas of the list...</p>
+          <p>Also, you can put anything you want inside of these containers, images, text, whatever.</p>
+          <p><a href="http://api.jquery.com/toggle/">Learn More Here</a></p>
+        </article>
+        
+        <dl class="demo half">
+          <dt class="one"><a href="#one">Demo 1</a></dt>
+            <dd class="one">Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</dd>          
+          <dt class="two"><a href="#two">Demo 2</a></dt>
+            <dd  class="two">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</dd>
+          <dt class="three"><a href="#three">Demo 3</a></dt>
+            <dd  class="three">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</dd>
+        </dl>
+        <br class="clear" />
+      </section>
+      
+      <section id="slideshow">
+        <h2>Slideshows</h2>
+
+        <div class="pics">
+            <img src="1small.jpg"/>
+            <img src="2small.jpg"/>
+            <img src="3small.jpg"/>
+        </div>
+        
+        <div class="nav"><a id="prev" href="#">Prev</a> <a id="next" href="#">Next</a></div>
+        
+        <style type="text/css">
+          #slideshow {position:relative;}
+          #slideshow .pics {
+            position: relative;
+            height:500px;
+            width:354px;
+          }
+          #slideshow .pics img {
+            position: relative;
+            height:500px;
+            width:354px;
+          }
+        </style>
+
+        <br class="clear" />
+
+      </section>
+      
+      <section id="popup">
+        <h2>Popups</h2>
+        
+        <div class="pics">
+            <a href="1large.jpg" rel="shadowbox[gallery]" title="Progressive"><img src="1small.jpg"/></a>
+            <a href="2large.jpg" rel="shadowbox[gallery]" title="Plans"><img src="2small.jpg"/></a>
+            <a href="3large.jpg" rel="shadowbox[gallery]" title="Hypocrisy"><img src="3small.jpg"/></a>
+        </div>
+        
+        <style type="text/css">
+          #popup .pics a {
+            display: block;
+            height:auto;
+            width:30%;
+            margin: 0 1.5%;
+            float:left;
+          }
+          #popup .pics a img {
+            display: block;
+            width:100%;
+          }
+        </style>
+
+        <br class="clear" />
+          
+      </section>
+
+    </div>  
+
+    <br/><br/><br/>
+
+    <footer>hello. back to class website: <a href="http://mograph.ookb.co/">Home!</a> </footer>  
+    
+    <br/><br/><br/>
+
+  </div>
+  <!-- /Primary Page Layout -->
+    
+	<!-- JS
+	================================================== -->
+	<script src="js/jquery-1.7.2.js"></script>
+	<script src="js/jquery.cycle.all.js"></script>
+	<script src="js/sb/shadowbox.js"></script>
+
+  <!-- Toggle Sections Open/Closed -->
+  <script>
+    $(document).ready(function() {
+       $('section#toggle .demo p').hide();
+       $('section#toggle .demo dd').hide();
+     });
+     
+
+    $("#toggle article.demo h3").click(function () {
+      $("section#toggle .demo p").toggle("slow");
+      });    
+
+    $("#toggle dl.demo dt.one a").click(function () {
+      $("dl.demo dd.one").toggle("slow");
+      });    
+
+    $("#toggle dl.demo dt.two a").click(function () {
+      $("dl.demo dd.two").toggle("slow");
+      });    
+
+    $("#toggle dl.demo dt.three a").click(function () {
+      $("dl.demo dd.three").toggle("slow");
+      });    
+
+  </script>
+
+  <!-- Slideshow controls -->
+  <script>
+
+    $('#slideshow .pics').cycle({ 
+        fx:     'fade', 
+        speed:  'fast', 
+        timeout: 0, 
+        next:   '#next', 
+        prev:   '#prev' 
+    });
+
+  </script>
+
+  <!-- Lightbox customization? -->
+  <script>
+
+Shadowbox.init();
+
+  </script>
+  
+<!-- End Document
+================================================== -->
+</body>
+</html>
